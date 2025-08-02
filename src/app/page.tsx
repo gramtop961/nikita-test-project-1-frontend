@@ -1,6 +1,27 @@
+"use client";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [apiResponse, setApiResponse] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/nikita');
+        const data = await response.json();
+        setApiResponse(data.message);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setApiResponse('Error loading data');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <div className="bg-blue-600 text-white py-4 px-6 rounded-lg shadow-lg mb-8 text-center w-full max-w-4xl">
@@ -8,52 +29,89 @@ export default function Home() {
         <p className="mt-2 text-blue-100">This is a blue banner to highlight important information.</p>
       </div>
       <h1 className="text-4xl font-bold text-green-600 mb-8">hello</h1>
-      <div className="w-full max-w-4xl mb-8">
+      <div className="mb-8 p-4 bg-gray-100 rounded-lg">
+        <h2 className="text-xl font-semibold mb-2">API Response:</h2>
+        {loading ? (
+          <p className="text-gray-600">Loading...</p>
+        ) : (
+          <p className="text-2xl font-bold text-blue-600">{apiResponse}</p>
+        )}
+      </div>
+      <div className="w-full max-w-6xl mb-8">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">SKU Inventory Table</h2>
         <table className="w-full border-collapse border border-gray-300 bg-white shadow-lg rounded-lg overflow-hidden">
           <thead className="bg-gray-100">
             <tr>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Product ID</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Name</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Price</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">SKU</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Product Name</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Brand</th>
               <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Category</th>
-              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Stock</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Size/Model</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Price</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Stock Qty</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Status</th>
             </tr>
           </thead>
           <tbody>
             <tr className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">001</td>
-              <td className="border border-gray-300 px-4 py-2">Laptop</td>
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">LP-DL-15-001</td>
+              <td className="border border-gray-300 px-4 py-2">ThinkPad X1 Carbon</td>
+              <td className="border border-gray-300 px-4 py-2">Lenovo</td>
+              <td className="border border-gray-300 px-4 py-2">Laptops</td>
+              <td className="border border-gray-300 px-4 py-2">15" i7 16GB</td>
+              <td className="border border-gray-300 px-4 py-2">$1,299.99</td>
+              <td className="border border-gray-300 px-4 py-2">12</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Active</span></td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">PH-AP-64-002</td>
+              <td className="border border-gray-300 px-4 py-2">iPhone 15 Pro</td>
+              <td className="border border-gray-300 px-4 py-2">Apple</td>
+              <td className="border border-gray-300 px-4 py-2">Smartphones</td>
+              <td className="border border-gray-300 px-4 py-2">256GB Titanium</td>
               <td className="border border-gray-300 px-4 py-2">$999.99</td>
-              <td className="border border-gray-300 px-4 py-2">Electronics</td>
-              <td className="border border-gray-300 px-4 py-2">25</td>
+              <td className="border border-gray-300 px-4 py-2">8</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Low Stock</span></td>
             </tr>
             <tr className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">002</td>
-              <td className="border border-gray-300 px-4 py-2">Smartphone</td>
-              <td className="border border-gray-300 px-4 py-2">$699.99</td>
-              <td className="border border-gray-300 px-4 py-2">Electronics</td>
-              <td className="border border-gray-300 px-4 py-2">50</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">003</td>
-              <td className="border border-gray-300 px-4 py-2">Coffee Mug</td>
-              <td className="border border-gray-300 px-4 py-2">$12.99</td>
-              <td className="border border-gray-300 px-4 py-2">Home</td>
-              <td className="border border-gray-300 px-4 py-2">100</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">004</td>
-              <td className="border border-gray-300 px-4 py-2">Desk Chair</td>
-              <td className="border border-gray-300 px-4 py-2">$199.99</td>
-              <td className="border border-gray-300 px-4 py-2">Furniture</td>
-              <td className="border border-gray-300 px-4 py-2">15</td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <td className="border border-gray-300 px-4 py-2">005</td>
-              <td className="border border-gray-300 px-4 py-2">Book</td>
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">HG-YT-BL-003</td>
+              <td className="border border-gray-300 px-4 py-2">Ceramic Coffee Mug</td>
+              <td className="border border-gray-300 px-4 py-2">YETI</td>
+              <td className="border border-gray-300 px-4 py-2">Drinkware</td>
+              <td className="border border-gray-300 px-4 py-2">14oz Blue</td>
               <td className="border border-gray-300 px-4 py-2">$24.99</td>
-              <td className="border border-gray-300 px-4 py-2">Education</td>
-              <td className="border border-gray-300 px-4 py-2">75</td>
+              <td className="border border-gray-300 px-4 py-2">45</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Active</span></td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">FU-HM-ER-004</td>
+              <td className="border border-gray-300 px-4 py-2">Aeron Office Chair</td>
+              <td className="border border-gray-300 px-4 py-2">Herman Miller</td>
+              <td className="border border-gray-300 px-4 py-2">Furniture</td>
+              <td className="border border-gray-300 px-4 py-2">Size B Black</td>
+              <td className="border border-gray-300 px-4 py-2">$1,395.00</td>
+              <td className="border border-gray-300 px-4 py-2">3</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Critical</span></td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">BK-ED-PY-005</td>
+              <td className="border border-gray-300 px-4 py-2">Clean Code</td>
+              <td className="border border-gray-300 px-4 py-2">Prentice Hall</td>
+              <td className="border border-gray-300 px-4 py-2">Books</td>
+              <td className="border border-gray-300 px-4 py-2">Paperback</td>
+              <td className="border border-gray-300 px-4 py-2">$42.99</td>
+              <td className="border border-gray-300 px-4 py-2">28</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Active</span></td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2 font-mono text-sm">GA-SM-WH-006</td>
+              <td className="border border-gray-300 px-4 py-2">Galaxy Watch 6</td>
+              <td className="border border-gray-300 px-4 py-2">Samsung</td>
+              <td className="border border-gray-300 px-4 py-2">Wearables</td>
+              <td className="border border-gray-300 px-4 py-2">44mm White</td>
+              <td className="border border-gray-300 px-4 py-2">$329.99</td>
+              <td className="border border-gray-300 px-4 py-2">0</td>
+              <td className="border border-gray-300 px-4 py-2"><span className="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Out of Stock</span></td>
             </tr>
           </tbody>
         </table>
