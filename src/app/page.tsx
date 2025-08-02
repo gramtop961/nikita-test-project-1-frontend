@@ -7,6 +7,57 @@ export default function Home() {
         <h2 className="text-xl font-semibold">Welcome to Our Site!</h2>
         <p className="mt-2 text-blue-100">This is a blue banner to highlight important information.</p>
       </div>
+      <h1 className="text-4xl font-bold text-green-600 mb-8">hello</h1>
+      <div className="w-full max-w-4xl mb-8">
+        <table className="w-full border-collapse border border-gray-300 bg-white shadow-lg rounded-lg overflow-hidden">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Product ID</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Name</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Price</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Category</th>
+              <th className="border border-gray-300 px-4 py-2 text-left font-semibold">Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2">001</td>
+              <td className="border border-gray-300 px-4 py-2">Laptop</td>
+              <td className="border border-gray-300 px-4 py-2">$999.99</td>
+              <td className="border border-gray-300 px-4 py-2">Electronics</td>
+              <td className="border border-gray-300 px-4 py-2">25</td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2">002</td>
+              <td className="border border-gray-300 px-4 py-2">Smartphone</td>
+              <td className="border border-gray-300 px-4 py-2">$699.99</td>
+              <td className="border border-gray-300 px-4 py-2">Electronics</td>
+              <td className="border border-gray-300 px-4 py-2">50</td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2">003</td>
+              <td className="border border-gray-300 px-4 py-2">Coffee Mug</td>
+              <td className="border border-gray-300 px-4 py-2">$12.99</td>
+              <td className="border border-gray-300 px-4 py-2">Home</td>
+              <td className="border border-gray-300 px-4 py-2">100</td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2">004</td>
+              <td className="border border-gray-300 px-4 py-2">Desk Chair</td>
+              <td className="border border-gray-300 px-4 py-2">$199.99</td>
+              <td className="border border-gray-300 px-4 py-2">Furniture</td>
+              <td className="border border-gray-300 px-4 py-2">15</td>
+            </tr>
+            <tr className="hover:bg-gray-50">
+              <td className="border border-gray-300 px-4 py-2">005</td>
+              <td className="border border-gray-300 px-4 py-2">Book</td>
+              <td className="border border-gray-300 px-4 py-2">$24.99</td>
+              <td className="border border-gray-300 px-4 py-2">Education</td>
+              <td className="border border-gray-300 px-4 py-2">75</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start border-2 border-blue-500 p-6 rounded-lg">
         <Image
           className="dark:invert"
