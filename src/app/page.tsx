@@ -3,6 +3,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <div className="bg-blue-600 text-white py-4 px-6 rounded-lg shadow-lg mb-8 text-center w-full max-w-4xl">
+        <h2 className="text-xl font-semibold">Welcome to Our Site!</h2>
+        <p className="mt-2 text-blue-100">This is a blue banner to highlight important information.</p>
+      </div>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start border-2 border-blue-500 p-6 rounded-lg">
         <Image
           className="dark:invert"
